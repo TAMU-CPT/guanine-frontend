@@ -29,8 +29,8 @@ var guanineApp = angular.module('guanineApp', [
     'ngStorage' // https://github.com/gsklee/ngStorage
 ]);
 
-guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarServiceProvider', 'RestangularProvider',
-    function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider) {
+guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarServiceProvider', 'RestangularProvider', 'DRF_URL',
+    function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL) {
         gravatarServiceProvider.defaults = {
           size     : 100,
           "default": 'mm'  // Mystery man as default for missing avatars
@@ -86,7 +86,7 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 //}
                 //return deferred.promise;
             //};
-        RestangularProvider.setBaseUrl('http://localhost:8000/');
+        RestangularProvider.setBaseUrl(DRF_URL);
         RestangularProvider.setRequestSuffix('/');
         RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             var extractedData;
