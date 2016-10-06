@@ -57,14 +57,14 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 //templateUrl: 'partials/student-detail.html',
                 //controller: 'StudentDetailCtrl'
             //}).
-            //when('/login', {
-                //templateUrl: 'partials/login.html',
-                //controller: 'LoginCtrl'
-            //}).
-            //when('/logout', {
-                //templateUrl: 'partials/login.html',
-                //controller: 'LogOutCtrl'
-            //}).
+            when('/login', {
+                templateUrl: 'partials/login.html',
+                controller: 'LoginCtrl'
+            }).
+            when('/logout', {
+                templateUrl: 'partials/login.html',
+                controller: 'LogOutCtrl'
+            }).
             //when('/help', {
                 //templateUrl: 'partials/help.html',
                 //controller: 'HelpCtrl'
@@ -136,6 +136,7 @@ require('./ctrl/home.js')(guanineApp);
 //require('./ctrl/course/detail.js')(guanineApp);
 //require('./ctrl/student/list.js')(guanineApp);
 //require('./ctrl/student/detail.js')(guanineApp);
-//require('./ctrl/login.js')(guanineApp);
-//require('./ctrl/logout.js')(guanineApp);
+require('./ctrl/nav.js')(guanineApp);
+require('./ctrl/login.js')(guanineApp);
+require('./ctrl/logout.js')(guanineApp);
 //require('./ctrl/help.js')(guanineApp);
