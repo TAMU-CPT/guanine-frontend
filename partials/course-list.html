@@ -5,8 +5,55 @@
     .hov {
         color:white;
     }
+    .cssSlideUp {
+        opacity:1;
+        transition: 1s ease-in-out all;
+        max-height: 600px;
+        overflow: hidden;
+    }
+    .cssSlideUp.ng-hide {
+        opacity:0;
+        max-height:0;
+    }
 </style>
-<div layout="row" layout-align="center center" style="padding-top:1em">
+<div layout="row" layout-align="center center">
+    <h2>My courses</h2>
+    <div layout="row">
+        <md-button ng-click="add_course=true">
+            <ng-md-icon icon="add_box"></ng-md-icon>
+            Add course
+        </md-button>
+    </div>
+</div>
+
+<div layout="row" layout-align="center center" class="cssSlideUp" ng-show="add_course">
+    <md-card flex="50">
+        <md-card-content>
+            <form name="courseForm" ng-submit="saveCourse()" novalidate>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>name</label>
+                        <input required name="name" md-no-asterisk ng-model="course.name" placeholder="e.g. BICH 464, Spring 2017">
+                        <div ng-messages="courseForm.name.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>description</label>
+                        <input ng-model="course.description" placeholder="e.g. bacteriophage genomics">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-datepicker ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
+                    <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
+                </div>
+        </md-card-content>
+    </md-card>
+</div>
+
+<div layout="row" layout-align="center center" style="padding-top:1em" ng-hide="courses.length == 0">
     <md-content flex="50" class="md-whiteframe-1dp">
         <md-list style="padding:0">
             <md-list-item ng-repeat="course in courses" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-click="go(course.id)">
