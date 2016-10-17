@@ -2,7 +2,7 @@ export default function(guanineApp) {
     guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location',
         function($scope, Restangular, $location) {
             $scope.go = function(id) {
-                $location.path('/semesters/' + id);;
+                $location.path('/courses/' + id);
             };
 
             $scope.ordering="name";

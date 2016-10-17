@@ -37,14 +37,33 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
         };
         gravatarServiceProvider.secure = true;
         gravatarServiceProvider.protocol = 'my-protocol';
+
+        $mdThemingProvider.definePalette('myPalette', {
+            '50': 'b334af',
+            '100': 'b334af',
+            '200': 'b334af',
+            '300': 'b334af',
+            '400': 'b334af',
+            '500': '34b3a0',
+            '600': 'b334af',
+            '700': 'b334af',
+            '800': 'b334af',
+            '900': 'b334af',
+            'A100': 'b334af',
+            'A200': 'b334af',
+            'A400': 'b334af',
+            'A700': 'b334af',
+            'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+                                                // on this palette should be dark or light
+
+            'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+             '200', '300', '400', 'A100'],
+            'contrastLightColors': undefined    // could also specify this if default was 'dark'
+        });
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue')
-            .accentPalette('pink');
+            .primaryPalette('myPalette')
+
         $routeProvider.
-            when('/courses', {
-                templateUrl: 'partials/course-list.html',
-                controller: 'CourseListCtrl'
-            }).
             when('/courses/:courseID', {
                 templateUrl: 'partials/course-detail.html',
                 controller: 'CourseDetailCtrl'
@@ -70,8 +89,8 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 //controller: 'HelpCtrl'
             //}).
             when('/', {
-                templateUrl: 'partials/home.html',
-                controller: 'HomeCtrl'
+                templateUrl: 'partials/course-list.html',
+                controller: 'CourseListCtrl'
             }).
             otherwise({
                 redirectTo: '/'
@@ -131,9 +150,8 @@ require('./factory.js')(guanineApp);
 require('./filter.js')(guanineApp);
 require('./service.js')(guanineApp);
 require('./const.js')(guanineApp);
-require('./ctrl/home.js')(guanineApp);
 require('./ctrl/course/list.js')(guanineApp);
-//require('./ctrl/course/detail.js')(guanineApp);
+require('./ctrl/course/detail.js')(guanineApp);
 //require('./ctrl/student/list.js')(guanineApp);
 //require('./ctrl/student/detail.js')(guanineApp);
 require('./ctrl/nav.js')(guanineApp);
