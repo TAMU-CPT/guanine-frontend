@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var FileLoader = require('file-loader');
+var BowerWebpackPlugin = require("bower-webpack-plugin");
 
 module.exports = {
     entry: ["./js/app.js", "./css/main.scss"],
@@ -22,6 +23,7 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('[name].css', {
             allChunks: true
-        })
+        }),
+        new BowerWebpackPlugin()
     ]
 };

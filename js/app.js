@@ -15,6 +15,8 @@ require('ngstorage');
 require('angular-jwt');
 require('ns-popover');
 var moment = require('moment');
+var Handsontable = require('handsontable');
+require('ngHandsontable');
 
 var guanineApp = angular.module('guanineApp', [
     'ngRoute',
