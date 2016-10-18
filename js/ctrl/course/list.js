@@ -2,10 +2,15 @@ export default function(guanineApp) {
     guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location',
         function($scope, Restangular, $location) {
             $scope.course = {}
+            $scope.namecol = []
+            $scope.emailcol = []
 
             $scope.print = function() {
-                var c = $scope.course.table.split("\t");
-                console.log(c);
+                var rows = $scope.course.table.split("\n")
+                for (var row in rows) {
+                    $scope.namecol.push(rows[row].split("\t")[0])
+                    $scope.emailcol.push(rows[row].split("\t")[1])
+                }
             };
 
             $scope.go = function(id) {

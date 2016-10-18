@@ -15,6 +15,13 @@
         opacity:0;
         max-height:0;
     }
+    .courselist {
+        opacity:1;
+        transition: 1s ease-in-out all;
+    }
+    .courselist.ng-hide {
+        opacity:0;
+    }
 </style>
 <div layout="row" layout-align="center center">
     <h2>My courses</h2>
@@ -51,19 +58,21 @@
                 </div>
                 <div layout="row">
                     <md-input-container flex>
-                        <input ng-model="course.table" placeholder="paste table">
+                        <textarea ng-model="course.table" placeholder="paste table"></textarea>
                     </md-input-container>
                 </div>
             </form>
-
             <md-button ng-click="print()">
                 Print
             </md-button>
+
         </md-card-content>
     </md-card>
 </div>
 
-<div layout="row" layout-align="center center" style="padding-top:1em" ng-hide="courses.length == 0">
+
+
+<div class="courselist" layout="row" layout-align="center center" style="padding-top:1em" ng-hide="courses.length == 0 || add_course">
     <md-content flex="50" class="md-whiteframe-1dp">
         <md-list style="padding:0">
             <md-list-item ng-repeat="course in courses" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-click="go(course.id)">
