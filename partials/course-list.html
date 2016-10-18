@@ -36,13 +36,12 @@
 <div layout="row" layout-align="center center">
     <h2>My courses</h2>
     <div layout="row">
-        <md-button ng-click="add_course=true">
+        <md-button ng-click="add_course=true" ng-disabled="add_course">
             <ng-md-icon icon="add_box"></ng-md-icon>
             Add course
         </md-button>
     </div>
 </div>
-
 <div layout="row" layout-align="center " class="cssSlideUp" ng-show="add_course">
     <md-card flex="40">
         <md-card-content>
@@ -72,14 +71,29 @@
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
-                    <md-datepicker ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
-                    <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
+                    <div layout="column" flex="50">
+                        <md-datepicker ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
+                    </div>
+                    <div layout="column" flex="50">
+                        <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
+                    </div>
                 </div>
             </form>
-            <md-button ng-click="">
-                Print
-            </md-button>
         </md-card-content>
+        <div layout="row">
+            <div layout="column" layout-align="center start" flex>
+                <md-button ng-click="cancel()">
+                    <ng-md-icon icon="keyboard_arrow_left"></ng-md-icon>
+                    Cancel
+                </md-button>
+            </div>
+            <div layout="column" layout-align="center end" flex>
+                <md-button ng-click="submit()">
+                    Submit
+                    <ng-md-icon icon="keyboard_arrow_right"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
     </md-card>
 
     <md-card class="cssSlideLeft" flex="40" ng-show="show_table" style="position:relative">

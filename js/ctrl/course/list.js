@@ -8,6 +8,10 @@ export default function(guanineApp) {
                 $scope.courses = data;
             });
 
+            $scope.cancel = function() {
+                $scope.add_course = false;
+            };
+
             $scope.make_table = function() {
                 $scope.students = []
                 var rows = $scope.course.table.split("\n");
@@ -44,6 +48,24 @@ export default function(guanineApp) {
             $scope.query = {
                 limit: 5,
                 page: 1,
+            };
+
+            $scope.submit = function() {
+                $scope.add_course = false;
+                Restangular.all('courses').post({
+                    name: $scope.course.name,
+                    description: $scope.course.description,
+                    students: $scope.students,
+                })
+                .then(function(course) {
+                    console.log("success");
+                }, function() {
+                    console.log('error');
+                });
+
+                Restangular.all('courses').getList($scope.query).then(function(data) {
+                    $scope.courses = data;
+                });
             };
     }]);
 }
