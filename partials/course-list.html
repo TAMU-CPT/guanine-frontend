@@ -49,6 +49,16 @@
                     <md-datepicker ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
                     <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
                 </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <input ng-model="course.table" placeholder="paste table">
+                    </md-input-container>
+                </div>
+            </form>
+
+            <md-button ng-click="print()">
+                Print
+            </md-button>
         </md-card-content>
     </md-card>
 </div>

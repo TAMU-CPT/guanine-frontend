@@ -1,6 +1,13 @@
 export default function(guanineApp) {
     guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location',
         function($scope, Restangular, $location) {
+            $scope.course = {}
+
+            $scope.print = function() {
+                var c = $scope.course.table.split("\t");
+                console.log(c);
+            };
+
             $scope.go = function(id) {
                 $location.path('/courses/' + id);
             };
