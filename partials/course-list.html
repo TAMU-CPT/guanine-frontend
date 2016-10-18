@@ -5,6 +5,16 @@
     .hov {
         color:white;
     }
+    .cssSlideLeft {
+        opacity:1;
+        transition: 1s ease-in-out all;
+        max-width: 500px;
+        overflow: hidden;
+    }
+    .cssSlideLeft.ng-hide {
+        opacity:0;
+        max-width:0;
+    }
     .cssSlideUp {
         opacity:1;
         transition: 1s ease-in-out all;
@@ -34,7 +44,7 @@
 </div>
 
 <div layout="row" layout-align="center center" class="cssSlideUp" ng-show="add_course">
-    <md-card flex="50">
+    <md-card flex="40">
         <md-card-content>
             <form name="courseForm" ng-submit="saveCourse()" novalidate>
                 <div layout="row">
@@ -65,7 +75,34 @@
             <md-button ng-click="print()">
                 Print
             </md-button>
+        </md-card-content>
+    </md-card>
 
+    <md-card class="cssSlideLeft" flex="40" ng-show="show_table">
+        <md-card-content>
+            <md-table-container>
+                <table md-table>
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column><span>Name</span></th>
+                            <th md-column><span>Email</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="student in cur_students">
+                            <td md-cell>{{student.name}}</td>
+                            <td md-cell>{{student.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination
+                md-limit="query.limit"
+                md-page="query.page"
+                md-total="{{students.meta.count}}"
+                md-page-select="options.pageSelect"
+                md-on-paginate="updateData">
+            </md-table-pagination>
         </md-card-content>
     </md-card>
 </div>
