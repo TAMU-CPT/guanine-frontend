@@ -8,7 +8,8 @@ export default function(guanineApp) {
                 $scope.courses = data;
             });
 
-            $scope.print = function() {
+            $scope.make_table = function() {
+                $scope.students = []
                 var rows = $scope.course.table.split("\n");
                 for (var row in rows) {
                     var temp = {};
@@ -21,7 +22,7 @@ export default function(guanineApp) {
             };
 
             $scope.data_subset = function() {
-                return $scope.students;
+                return $scope.students.slice($scope.query.page*5-5, $scope.query.page*5);
             };
 
             $scope.go = function(id) {

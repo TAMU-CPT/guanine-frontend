@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div layout="row" layout-align="center center" class="cssSlideUp" ng-show="add_course">
+<div layout="row" layout-align="center " class="cssSlideUp" ng-show="add_course">
     <md-card flex="40">
         <md-card-content>
             <form name="courseForm" ng-submit="saveCourse()" novalidate>
@@ -62,23 +62,27 @@
                         <input ng-model="course.description" placeholder="e.g. bacteriophage genomics">
                     </md-input-container>
                 </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>student table</label>
+                        <textarea required md-no-asterisk max-rows=1 ng-change="make_table()" ng-model="course.table" placeholder="paste name and email columns from spreadsheet"></textarea>
+                        <div ng-messages="courseForm.name.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
                 <div layout="row" layout-xs="column">
                     <md-datepicker ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
                     <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
                 </div>
-                <div layout="row">
-                    <md-input-container flex>
-                        <textarea ng-model="course.table" placeholder="paste table"></textarea>
-                    </md-input-container>
-                </div>
             </form>
-            <md-button ng-click="print()">
+            <md-button ng-click="">
                 Print
             </md-button>
         </md-card-content>
     </md-card>
 
-    <md-card class="cssSlideLeft" flex="40" ng-show="show_table">
+    <md-card class="cssSlideLeft" flex="40" ng-show="show_table" style="position:relative">
         <md-card-content>
             <md-table-container>
                 <table md-table>
@@ -96,10 +100,10 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination
+            <md-table-pagination style="position: absolute; bottom:0; right:0; border-top: 0"
                 md-limit="query.limit"
                 md-page="query.page"
-                md-total="{{students.meta.count}}"
+                md-total="{{students.length}}"
                 md-page-select="options.pageSelect"
                 md-on-paginate="updateData">
             </md-table-pagination>
