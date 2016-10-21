@@ -45,7 +45,7 @@
 <div layout="row" layout-align="center " class="cssSlideUp" ng-show="add_course">
     <md-card flex="40">
         <md-card-content>
-            <form name="courseForm" ng-submit="saveCourse()" novalidate>
+            <form name="courseForm" ng-submit="submit()" novalidate>
                 <div layout="row">
                     <md-input-container flex>
                         <label>name</label>
@@ -88,7 +88,7 @@
                 </md-button>
             </div>
             <div layout="column" layout-align="center end" flex>
-                <md-button ng-click="submit()">
+                <md-button ng-disabled="courseForm.$invalid" ng-click="submit()">
                     Submit
                     <ng-md-icon icon="keyboard_arrow_right"></ng-md-icon>
                 </md-button>
