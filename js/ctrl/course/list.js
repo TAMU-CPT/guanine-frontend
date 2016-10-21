@@ -1,8 +1,8 @@
 export default function(guanineApp) {
-    guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location',
-        function($scope, Restangular, $location) {
-            $scope.course = {}
-            $scope.students = []
+    guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location', '$mdLoginToast',
+        function($scope, Restangular, $location, $mdLoginToast) {
+            $scope.course = {};
+            $scope.students = [];
 
             Restangular.all('courses').getList($scope.query).then(function(data) {
                 $scope.courses = data;
@@ -51,21 +51,26 @@ export default function(guanineApp) {
             };
 
             $scope.submit = function() {
-                $scope.add_course = false;
                 Restangular.all('courses').post({
                     name: $scope.course.name,
                     description: $scope.course.description,
                     students: $scope.students,
                 })
                 .then(function(course) {
-                    console.log("success");
+                    $scope.add_course = false;
+                    $scope.show_table = false;
+                    $scope.courseForm.$setPristine();
+                    $scope.courseForm.$setUntouched();
+                    $scope.course = {};
+                    $scope.students = [];
+                    $scope.cur_students = [];
+                    Restangular.all('courses').getList($scope.query).then(function(data) {
+                        $scope.courses = data;
+                    });
                 }, function() {
-                    console.log('error');
+                    $mdLoginToast.show('Invalid student table');
                 });
 
-                Restangular.all('courses').getList($scope.query).then(function(data) {
-                    $scope.courses = data;
-                });
             };
     }]);
 }
