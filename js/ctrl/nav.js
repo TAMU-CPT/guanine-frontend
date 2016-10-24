@@ -1,6 +1,6 @@
 export default function(guanineApp) {
-    guanineApp.controller('NavCtrl', ['$scope', '$mdSidenav', '$localStorage', '$location', '$interval',
-        function ($scope, $mdSidenav, $localStorage, $location, $interval) {
+    guanineApp.controller('NavCtrl', ['$scope', '$mdSidenav', '$localStorage', '$location', '$interval','$mdDialog',
+        function ($scope, $mdSidenav, $localStorage, $location, $interval,$mdDialog) {
             $scope.nav = {}
             $scope.nav.userData = $localStorage.jwtData;
 
@@ -9,6 +9,12 @@ export default function(guanineApp) {
                     $scope.nav.show_login_button = false;
                 } else { $scope.nav.show_login_button = true; }
             });
+
+            var originatorEv;
+            this.openMenu = function($mdOpenMenu, ev) {
+              originatorEv = ev;
+              $mdOpenMenu(ev);
+            };
 
             $scope.go = function(route){
                 $location.path(route);
