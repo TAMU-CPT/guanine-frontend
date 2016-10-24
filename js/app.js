@@ -13,7 +13,6 @@ require('angular-animate');
 require('jquery');
 require('ngstorage');
 require('angular-jwt');
-require('ns-popover');
 
 var guanineApp = angular.module('guanineApp', [
     'ngRoute',
@@ -24,7 +23,6 @@ var guanineApp = angular.module('guanineApp', [
     'ngMessages',
     'ngAnimate',
     'md.data.table',
-    'nsPopover',
     'ngStorage' // https://github.com/gsklee/ngStorage
 ]);
 
