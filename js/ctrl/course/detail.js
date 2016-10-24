@@ -11,9 +11,14 @@ export default function(guanineApp) {
             };
 
             $scope.query = {
-                limit: 5,
+                limit: 10,
                 page: 1,
                 order: 'name',
+            };
+
+            // go to student detail
+            $scope.go = function(id) {
+                $location.path('/students/' + id);
             };
     }]);
 }

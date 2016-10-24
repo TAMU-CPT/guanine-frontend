@@ -1,5 +1,18 @@
+<style>
+    tbody .md-row:hover {
+        background-color: #fafafa;
+    }
+    tbody .md-row:focus {
+        outline:none;
+    }
+    [ng-click],
+    [data-ng-click],
+    [x-ng-click] {
+        cursor: pointer;
+    }
+</style>
 <div class="container-fluid" layout="row" layout-align="center">
-    <md-card>
+    <md-card flex>
         <md-card-content>
             <md-table-container>
                 <table md-table>
@@ -10,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                        <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="go(student.id)">
                             <td md-cell>{{student.name}}</td>
                             <td md-cell>{{student.email}}</td>
                         </tr>
