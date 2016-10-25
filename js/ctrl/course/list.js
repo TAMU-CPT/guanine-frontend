@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 export default function(guanineApp) {
     guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location', '$mdLoginToast',
         function($scope, Restangular, $location, $mdLoginToast) {
@@ -55,6 +57,8 @@ export default function(guanineApp) {
                     name: $scope.course.name,
                     description: $scope.course.description,
                     students: $scope.students,
+                    start_date: moment($scope.course.start_date).format('YYYY-MM-DD'),
+                    end_date: moment($scope.course.end_date).format('YYYY-MM-DD'),
                 })
                 .then(function(course) {
                     $scope.add_course = false;
