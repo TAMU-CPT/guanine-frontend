@@ -10,36 +10,62 @@
     [x-ng-click] {
         cursor: pointer;
     }
+    .vertical-divider {
+      border-top-width: 0;
+      border-right-width: 1px;
+      border-right-style: solid;
+      height: 100%;
+    }
 </style>
-<h2 layout="row" layout-align="center center">{{course.name}}</h2>
-<div layout="row" layout-align="center center" flex>
-    <div ng-repeat="prof in course.professor" style="padding:0.3em">
-        <img gravatar-src="prof.email" gravatar-size="60" style="border-radius:50%">
+
+<div layout="row" layout-align="center center" flex >
+    <h1 layout="row" layout-align="center center" style="padding:0.3em">{{course.name}}</h1>
+    <div ng-repeat="prof in course.professor" style="padding:0.1em">
+        <img gravatar-src="prof.email" gravatar-size="30" style="border-radius:50%">
     </div>
 </div>
-<div class="container-fluid" layout="row" layout-align="center">
-    <md-card flex>
-        <md-card-content>
-            <md-table-container>
-                <table md-table>
-                    <thead md-head md-order="query.order" md-on-reorder="updateData">
-                        <tr md-row>
-                            <th md-column md-order-by="name">NAME</th>
-                        </tr>
-                    </thead>
-                    <tbody md-body>
-                        <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="go(student.id)">
-                            <td md-cell>{{student.name}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </md-table-container>
-            <md-table-pagination
-                md-limit="query.limit"
-                md-page="query.page"
-                md-total="{{course.students.length}}"
-                md-page-select="options.pageSelect">
-            </md-table-pagination>
-        </md-card-content>
-    </md-card>
+<div flex layout="row" layout-align="center center" style="background:white" layout-padding>
+    <div flex="20" layout="column" layout-align="center center" style="border-left: 1px solid rgb(212, 213, 214)">
+        <h3>{{course.students.length}}</h3>
+        <div class="reg">Students</div>
+    </div>
+    <div flex="20" layout="column" layout-align="center center" style="border-right: 1px solid rgb(212, 213, 214)">
+        <h3>0</h3>
+        <div class="reg">Assignments</div>
+    </div>
+</div>
+<div layout="row" layout-align="center center" flex layout-padding style="background:#d4d5d6" class="reg">
+    {{start_date}}
+    <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
+    {{end_date}}
+</div>
+
+<div layout="column" layout-padding>
+    <h2 layout="row" layout-align="center center">Classroom</h2>
+    <div class="container-fluid" layout="row" layout-align="center">
+        <md-card flex="80">
+            <md-card-content>
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head md-order="query.order" md-on-reorder="updateData">
+                            <tr md-row>
+                                <th md-column md-order-by="name">NAME</th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="go(student.id)">
+                                <td md-cell>{{student.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination
+                    md-limit="query.limit"
+                    md-page="query.page"
+                    md-total="{{course.students.length}}"
+                    md-page-select="options.pageSelect">
+                </md-table-pagination>
+            </md-card-content>
+        </md-card>
+    </div>
 </div>

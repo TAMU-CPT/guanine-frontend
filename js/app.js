@@ -36,8 +36,8 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
         gravatarServiceProvider.protocol = 'my-protocol';
 
         $mdThemingProvider.definePalette('myPalette', {
-            '50': 'b334af',
-            '100': 'b334af',
+            '50': 'd7f4ef',
+            '100': 'c4eee7',
             '200': 'b334af',
             '300': 'b334af',
             '400': 'b334af',
