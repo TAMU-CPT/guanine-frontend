@@ -18,11 +18,14 @@
     }
 </style>
 
-<div layout="row" layout-align="center center" flex >
-    <h1 layout="row" layout-align="center center" style="padding:0.3em">{{course.name}}</h1>
-    <div ng-repeat="prof in course.professor" style="padding:0.1em">
-        <img gravatar-src="prof.email" gravatar-size="30" style="border-radius:50%">
+<div layout="column" layout-align="center center" flex layout-padding>
+    <div layout="row" layout-align="center center">
+        <h1 style="padding:0.3em;margin:0">{{course.name}}</h1>
+        <div ng-repeat="prof in course.professor" style="padding:0.1em">
+            <img gravatar-src="prof.email" gravatar-size="30" style="border-radius:50%">
+        </div>
     </div>
+    <p style="margin-top:0; text-align:center">{{course.description}}</p>
 </div>
 <div flex layout="row" layout-align="center center" style="background:white" layout-padding>
     <div flex="20" layout="column" layout-align="center center" style="border-left: 1px solid rgb(212, 213, 214)">
