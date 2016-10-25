@@ -125,15 +125,15 @@
     </md-card>
 </div>
 
-
-
 <div class="courselist" layout="row" layout-align="center center" style="padding-top:1em" ng-hide="courses.length == 0 || add_course">
-    <md-content flex="50" class="md-whiteframe-1dp">
+    <md-content flex="70" class="md-whiteframe-1dp">
         <md-list style="padding:0">
             <md-list-item ng-repeat="course in courses" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-click="go(course.id)">
-                <p ng-class="{'hov':hovering}">{{course.name}}</p>
-                <span flex></span>
-                <ng-md-icon ng-class="{'hov':hovering}" icon="keyboard_arrow_right"></ng-md-icon>
+                <div layout="row" style="padding:0.1em" flex>
+                    <p ng-class="{'hov':hovering}">{{course.name}}</p>
+                    <span flex></span>
+                    <ng-md-icon ng-class="{'hov':hovering}" icon="keyboard_arrow_right"></ng-md-icon>
+                </div>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
         </md-list>

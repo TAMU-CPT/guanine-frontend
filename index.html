@@ -6,8 +6,21 @@
     <title>GUANINE</title>
 
     <link rel="stylesheet" type="text/css" href="build/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
 </head>
-<body>
+<style>
+    * {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
+    }
+    table.md-table th.md-column {
+        font-size: 105% !important;
+    }
+    table.md-table td.md-cell {
+        font-weight: 400;
+    }
+</style>
+<body style="background:#e9eaea">
     <div ng-controller="NavCtrl" layout="column" style="height:500px" ng-cloak>
         <md-toolbar ng-cloak>
             <div class="md-toolbar-tools">
