@@ -45,41 +45,85 @@
     <p class="reg" layout-padding>{{end_date}}</p>
 </div>
 
-<div layout="column" layout-padding>
 
-    <div layout="row" layout-align="center center">
-        <h2>Classroom</h2>
-        <div layout="row">
-            <md-button ng-click="add_course=true" ng-disabled="add_course">
-                <ng-md-icon icon="add_box"></ng-md-icon>
-                Add assessment
-            </md-button>
-        </div>
+<div layout="row" layout-align="center center">
+    <h2 id="goto">Classroom</h2>
+    <div layout="row">
+        <md-button ng-click="assessmentPopup($event)" ng-disabled="add_assessment">
+            <ng-md-icon icon="add_box"></ng-md-icon>
+            Add assessment
+        </md-button>
     </div>
-    <div class="container-fluid" layout="row" layout-align="center">
-        <md-card flex="80">
+</div>
+
+<div class="container-fluid" layout="row" layout-align="center">
+    <md-card flex="80">
+        <md-card-content>
+            <md-table-container>
+                <table md-table>
+                    <thead md-head md-order="query.order" md-on-reorder="updateData">
+                        <tr md-row>
+                            <th md-column md-order-by="name">NAME</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="go(student.id)">
+                            <td md-cell>{{student.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination
+                md-limit="query.limit"
+                md-page="query.page"
+                md-total="{{course.students.length}}"
+                md-page-select="options.pageSelect">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>
+
+<div style="visibility: hidden">
+  <div class="md-dialog-container" id="assessment_card">
+    <md-dialog>
+        <md-card style="margin:0">
             <md-card-content>
-                <md-table-container>
-                    <table md-table>
-                        <thead md-head md-order="query.order" md-on-reorder="updateData">
-                            <tr md-row>
-                                <th md-column md-order-by="name">NAME</th>
-                            </tr>
-                        </thead>
-                        <tbody md-body>
-                            <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="go(student.id)">
-                                <td md-cell>{{student.name}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </md-table-container>
-                <md-table-pagination
-                    md-limit="query.limit"
-                    md-page="query.page"
-                    md-total="{{course.students.length}}"
-                    md-page-select="options.pageSelect">
-                </md-table-pagination>
+                <form name="assessmentForm" ng-submit="submit()" novalidate>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>name</label>
+                            <input required name="name" md-no-asterisk ng-model="assessment.title" placeholder="e.g. Quiz 1">
+                            <div ng-messages="assessmentForm.title.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>description</label>
+                            <input required name="description" md-no-asterisk ng-model="assessment.description" placeholder="e.g. reading on phage P1">
+                            <div ng-messages="assessmentForm.description.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </form>
             </md-card-content>
+            <div layout="row">
+                <div layout="column" layout-align="center start" flex>
+                    <md-button ng-click="cancel()">
+                        <ng-md-icon icon="keyboard_arrow_left"></ng-md-icon>
+                        Cancel
+                    </md-button>
+                </div>
+                <div layout="column" layout-align="center end" flex>
+                    <md-button ng-disabled="assessmentForm.$invalid" ng-click="submit()">
+                        Submit
+                        <ng-md-icon icon="keyboard_arrow_right"></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
         </md-card>
-    </div>
+    </md-dialog>
+  </div>
 </div>
