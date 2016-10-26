@@ -37,10 +37,10 @@
         <div class="reg">Assignments</div>
     </div>
 </div>
-<div layout="row" layout-align="center center" flex layout-padding style="background:#d4d5d6" class="reg">
-    {{start_date}}
+<div layout="row" layout-align="center center" flex style="background:#d4d5d6">
+    <p class="reg" layout-padding>{{start_date}}</p>
     <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
-    {{end_date}}
+    <p class="reg" layout-padding>{{end_date}}</p>
 </div>
 
 <div layout="column" layout-padding>
