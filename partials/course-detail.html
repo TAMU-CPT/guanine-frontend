@@ -91,7 +91,7 @@
                 <form name="assessmentForm" ng-submit="submit()" novalidate>
                     <div layout="row">
                         <md-input-container flex>
-                            <label>name</label>
+                            <label>Name</label>
                             <input required name="name" md-no-asterisk ng-model="assessment.title" placeholder="e.g. Quiz 1">
                             <div ng-messages="assessmentForm.title.$error">
                                 <div ng-message="required">This is required.</div>
@@ -100,7 +100,7 @@
                     </div>
                     <div layout="row">
                         <md-input-container flex>
-                            <label>description</label>
+                            <label>Description</label>
                             <input required name="description" md-no-asterisk ng-model="assessment.description" placeholder="e.g. reading on phage P1">
                             <div ng-messages="assessmentForm.description.$error">
                                 <div ng-message="required">This is required.</div>

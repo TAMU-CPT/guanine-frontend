@@ -3,6 +3,8 @@ var moment = require('moment');
 export default function(guanineApp) {
     guanineApp.controller('CourseDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog',
         function($scope, Restangular, $location, $routeParams, $mdDialog) {
+            $scope.assessment = {};
+
             Restangular.one('courses', $routeParams.courseID).get().then(function(data) {
                 $scope.course = data;
                 $scope.date_progress = $scope.find_date_progress();
@@ -40,6 +42,11 @@ export default function(guanineApp) {
                     parent: angular.element(document.body),
                     clickOutsideToClose: true
                 });
+            };
+
+            $scope.submit = function() {
+                $scope.assessment = {};
+                $scope.assessmentForm.$setUntouched();
             };
 
             $scope.cancel = function() {

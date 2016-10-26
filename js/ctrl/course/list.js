@@ -63,7 +63,6 @@ export default function(guanineApp) {
                 .then(function(course) {
                     $scope.add_course = false;
                     $scope.show_table = false;
-                    $scope.courseForm.$setPristine();
                     $scope.courseForm.$setUntouched();
                     $scope.course = {};
                     $scope.students = [];
