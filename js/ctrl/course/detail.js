@@ -44,13 +44,25 @@ export default function(guanineApp) {
                 });
             };
 
-            $scope.submit = function() {
-                $scope.assessment = {};
-                $scope.assessmentForm.$setUntouched();
-            };
-
             $scope.cancel = function() {
                 $mdDialog.cancel();
+            };
+
+            $scope.submit = function() {
+                Restangular.all('assessments').post({
+                    course: $scope.course.id,
+                    title: $scope.assessment.title,
+                    description: $scope.assessment.description,
+                    start_date: moment($scope.assessment.start_date).format('YYYY-MM-DD'),
+                    end_date: moment($scope.assessment.end_date).format('YYYY-MM-DD'),
+                })
+                .then(function(course) {
+                    $scope.assessment = {};
+                    $scope.assessmentForm.$setUntouched();
+                    $scope.cancel();
+                }, function() {
+                    $mdLoginToast.show('Invalid assessment');
+                });
             };
     }]);
 }
