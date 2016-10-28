@@ -64,5 +64,18 @@ export default function(guanineApp) {
                     $mdLoginToast.show('Invalid assessment');
                 });
             };
+
+            $scope.student_result = function(results, student_id) {
+                var r = [];
+                results.forEach(function(result) {
+                    if (result.student == student_id) {
+                        r.push(result)
+                    }
+                });
+                if (r.length > 1) {
+                    console.log('a');
+                }
+                return r[0];
+            };
     }]);
 }

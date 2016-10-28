@@ -6,7 +6,7 @@ export default function(guanineApp) {
             $scope.course = {};
             $scope.students = [];
 
-            Restangular.all('courses').getList($scope.query).then(function(data) {
+            Restangular.all('courses').getList().then(function(data) {
                 $scope.courses = data;
             });
 
@@ -67,7 +67,7 @@ export default function(guanineApp) {
                     $scope.course = {};
                     $scope.students = [];
                     $scope.cur_students = [];
-                    Restangular.all('courses').getList($scope.query).then(function(data) {
+                    Restangular.all('courses').getList().then(function(data) {
                         $scope.courses = data;
                     });
                 }, function() {
