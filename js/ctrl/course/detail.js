@@ -72,10 +72,14 @@ export default function(guanineApp) {
                         r.push(result)
                     }
                 });
-                if (r.length > 1) {
-                    console.log('a');
+                r.sort(function(a,b) {
+                    if(a.submitted.valueOf() < b.submitted.valueOf()) return -1;
+                    if(a.submitted.valueOf() > b.submitted.valueOf()) return 1;
+                    return 0;
+                });
+                if (r.length) {
+                    return r[r.length-1].points_earned/r[r.length-1].points_possible*100;
                 }
-                return r[0];
             };
     }]);
 }
