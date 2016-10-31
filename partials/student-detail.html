@@ -1,2 +1,49 @@
-<div>{{student.name}}</div>
-<div>{{student.email}}</div>
+<style>
+    tbody .md-row:hover {
+        background-color: #fafafa;
+    }
+    tbody .md-row:focus {
+        outline:none;
+    }
+    [ng-click],
+    [data-ng-click],
+    [x-ng-click] {
+        cursor: pointer;
+    }
+</style>
+<div class="container-fluid" layout="row" layout-align="center">
+    <md-card flex="50" flex-xs="100" flex-sm="75">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{student.name}}<span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <md-table-container>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="ordering" md-on-reorder="updateData">
+                        <tr md-row>
+                            <th md-column><span>Date</span></th>
+                            <th md-column><span>Score</span></th>
+                            <th md-column md-order-by="assessment__title"><span>Assessment</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="result in results">
+                            <td md-cell>{{date_format(result.submitted)}}</td>
+                            <td md-cell>{{result.points_earned/result.points_possible * 100}}</td>
+                            <td md-cell>{{result.assessment.title}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination
+                md-limit="query.limit"
+                md-page="query.page"
+                md-total="{{results.meta.count}}"
+                md-page-select="options.pageSelect"
+                md-on-paginate="updateData">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>
