@@ -25,7 +25,7 @@ export default function(guanineApp) {
 
             // go to student detail
             $scope.go = function(id) {
-                $location.path('/students/' + id);
+                $location.path('/courses/' + $routeParams.courseID + '/students/' + id);
             };
 
             // determine calendar progress

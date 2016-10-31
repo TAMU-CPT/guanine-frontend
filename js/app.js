@@ -69,7 +69,7 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 //templateUrl: 'partials/student-list.html',
                 //controller: 'StudentListCtrl'
             //}).
-            when('/students/:studentID', {
+            when('/courses/:courseID/students/:studentID', {
                 templateUrl: 'partials/student-detail.html',
                 controller: 'StudentDetailCtrl'
             }).
