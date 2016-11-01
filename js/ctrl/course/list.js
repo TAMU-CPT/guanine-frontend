@@ -73,7 +73,6 @@ export default function(guanineApp) {
                 }, function() {
                     $mdLoginToast.show('Invalid student table');
                 });
-
             };
     }]);
 }
