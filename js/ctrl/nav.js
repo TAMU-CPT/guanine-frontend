@@ -8,6 +8,10 @@ export default function(guanineApp) {
                 if ($location.path() == '/login') {
                     $scope.nav.show_login_button = false;
                 } else { $scope.nav.show_login_button = true; }
+
+                if ($location.path() == '/') {
+                    $scope.home = true;
+                } else { $scope.home = false;}
             });
 
             var originatorEv;
