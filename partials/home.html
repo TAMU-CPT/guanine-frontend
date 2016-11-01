@@ -21,14 +21,14 @@
                         <md-input-container flex>
                             <label>Name</label>
                             <input md-no-asterisk required name="name" ng-model="prof.name"/>
-                            <div ng-messages="name.$error">
+                            <div ng-messages="signupForm.name.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
                         </md-input-container>
                         <md-input-container flex>
                             <label>Email address</label>
                             <input md-no-asterisk required name="email" ng-model="prof.email"/>
-                            <div ng-messages="email.$error">
+                            <div ng-messages="signupForm.email.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
                         </md-input-container>
@@ -37,15 +37,16 @@
                         <md-input-container flex>
                             <label>Password</label>
                             <input md-no-asterisk type="password" required name="pw1" ng-model="prof.pw1" />
-                            <div ng-messages="pw1.$error">
+                            <div ng-messages="signupForm.pw1.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
                         </md-input-container>
                         <md-input-container flex>
                             <label>Re-type Password</label>
-                            <input md-no-asterisk type="password" required name="pw2" ng-model="prof.pw2" />
-                            <div ng-messages="pw2.$error">
+                            <input md-no-asterisk type="password" required name="pw2" ng-model="prof.pw2" compare-to="prof.pw1"/>
+                            <div ng-messages="signupForm.pw2.$error">
                                 <div ng-message="required">This is required.</div>
+                                <div ng-message="compareTo">Passwords must match</div>
                             </div>
                         </md-input-container>
                     </div>
