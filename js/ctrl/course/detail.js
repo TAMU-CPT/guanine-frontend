@@ -60,6 +60,9 @@ export default function(guanineApp) {
                     $scope.assessment = {};
                     $scope.assessmentForm.$setUntouched();
                     $scope.cancel();
+                    Restangular.one('courses', $routeParams.courseID).get().then(function(data) {
+                        $scope.course = data;
+                    });
                 }, function() {
                     $mdLoginToast.show('Invalid assessment');
                 });
