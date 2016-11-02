@@ -3,12 +3,12 @@
         background-color:white;
     }
 </style>
-<div layout="row" layout-align="center center" layout-padding style="background-color:#34b3a0">
-    <div flex="50" style="padding:3em 0em 3em 3em">
+<div layout="row" layout-xs="column" layout-align="center center" layout-padding style="background-color:#34b3a0">
+    <div flex-gt-xs="50" style="padding:3em 0em 3em 3em">
         <h1 style="color:white">GUANINE</h1>
         <h2 style="color:white">Do blahblah, blah, and much much more</h2>
     </div>
-    <div flex="50" style="padding:3em 3em 3em 0em">
+    <div flex-gt-xs="50" style="padding:3em 3em 3em 0em">
         <md-card flex>
             <md-toolbar>
                 <div class="md-toolbar-tools" style="background-color:#637a91" layout="row" layout-align="center center">
@@ -18,13 +18,6 @@
             <md-card-content>
                 <form name="signupForm">
                     <div layout="row">
-                        <md-input-container flex>
-                            <label>Name</label>
-                            <input md-no-asterisk required name="name" ng-model="prof.name"/>
-                            <div ng-messages="signupForm.name.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>
                         <md-input-container flex>
                             <label>Email address</label>
                             <input md-no-asterisk required name="email" ng-model="prof.email"/>
