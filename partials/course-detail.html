@@ -111,10 +111,10 @@
                     </div>
                     <div layout="row" layout-xs="column">
                         <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.start_date" md-placeholder="Start date"></md-datepicker>
+                            <md-datepicker ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
                         </div>
                         <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.end_date" md-placeholder="End date"></md-datepicker>
+                            <md-datepicker ng-model="assessment.end_date" md-placeholder="End date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
                         </div>
                     </div>
                 </form>

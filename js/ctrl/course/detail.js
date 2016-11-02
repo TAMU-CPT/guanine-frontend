@@ -7,6 +7,9 @@ export default function(guanineApp) {
 
             Restangular.one('courses', $routeParams.courseID).get().then(function(data) {
                 $scope.course = data;
+                // minDate/maxDate for min and max dates for assessments
+                $scope.minDate = moment($scope.course.start_date).toDate();
+                $scope.maxDate = moment($scope.course.end_date).toDate();
                 $scope.date_progress = $scope.find_date_progress();
                 $scope.start_date = moment($scope.course.start_date).format('MM/DD/YYYY');
                 $scope.end_date = moment($scope.course.end_date).format('MM/DD/YYYY');
