@@ -8,6 +8,13 @@ export default function(guanineApp) {
 
             Restangular.all('courses').getList().then(function(data) {
                 $scope.courses = data;
+                if ($scope.courses.length == 0) {
+                    $scope.add_course = true;
+                }
+            });
+
+            Restangular.all('users').getList().then(function(data) {
+                $scope.users = data;
             });
 
             $scope.cancel = function() {
