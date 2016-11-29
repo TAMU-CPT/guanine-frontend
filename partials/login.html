@@ -5,7 +5,7 @@
                 <md-card-content>
                     <div layout="row">
                         <md-input-container flex>
-                            <label>Username</label>
+                            <label>Email address</label>
                             <input md-no-asterisk required name="name" ng-model="userData.username"/>
                             <div ng-messages="username.$error">
                                 <div ng-message="required">This is required.</div>
@@ -21,7 +21,7 @@
                             </div>
                         </md-input-container>
                     </div>
-                    <md-button ng-disabled="loginForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Log in</md-button>
+                    <md-button ng-disabled="loginForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Sign In</md-button>
                 </md-card-content>
             </md-card>
         </form>

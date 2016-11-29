@@ -1,0 +1,56 @@
+<style>
+    body {
+        background-color:white;
+    }
+</style>
+<div layout="row" layout-xs="column" layout-align="center center" layout-padding style="background-color:#34b3a0">
+    <div flex-gt-xs="50" style="padding:3em 0em 3em 3em">
+        <h1 style="color:white">GUANINE</h1>
+        <h2 style="color:white">Do blahblah, blah, and much much more</h2>
+    </div>
+    <div flex-gt-xs="50" style="padding:3em 3em 3em 0em">
+        <md-card flex>
+            <md-toolbar>
+                <div class="md-toolbar-tools" style="background-color:#637a91" layout="row" layout-align="center center">
+                    <span style="font-weight:bold">Get started today!</span>
+                </div>
+            </md-toolbar>
+            <md-card-content>
+                <form name="signupForm">
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Email address</label>
+                            <input md-no-asterisk required name="email" ng-model="prof.email"/>
+                            <div ng-messages="signupForm.email.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Password</label>
+                            <input md-no-asterisk type="password" required name="pw1" ng-model="prof.pw1" />
+                            <div ng-messages="signupForm.pw1.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Retype Password</label>
+                            <input md-no-asterisk type="password" required name="pw2" ng-model="prof.pw2" compare-to="prof.pw1"/>
+                            <div ng-messages="signupForm.pw2.$error">
+                                <div ng-message="required">This is required.</div>
+                                <div ng-message="compareTo">Passwords must match</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-button flex="100" ng-disabled="signupForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Sign Up</md-button>
+                    </div>
+                    <div layout="row" layout-align="center center">
+                        <p style="color:#637a91; font-size:80%">Already have an account? Sign in <a href="" ng-click="go('/login')">here</a></p>
+                    </div>
+                </form>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

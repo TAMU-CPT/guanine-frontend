@@ -13,7 +13,7 @@ export default function(guanineApp) {
                             $localStorage.jwtData = jwt_decode(data.token);
                             $scope.nav.userData = $localStorage.jwtData;
                             $mdLoginToast.show('Success');
-                            $location.path('/');
+                            $location.path('/courses');
                         })
                         .error(function() {
                             $mdLoginToast.show('Invalid Login');

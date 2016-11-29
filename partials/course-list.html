@@ -78,6 +78,14 @@
                         <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
                     </div>
                 </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Class administrators</label>
+                        <md-select ng-model="users" multiple>
+                            <md-option ng-value="user.username" ng-repeat="user in users">{{user.username}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
             </form>
         </md-card-content>
         <div layout="row">

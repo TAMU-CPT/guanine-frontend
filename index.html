@@ -22,11 +22,15 @@
     html, body {
         background:#e9eaea;
     }
+    .home {
+        background-color:white;
+        color:#34b3a0;
+    }
 </style>
 <body>
     <div ng-controller="NavCtrl" layout="column" style="height:500px" ng-cloak>
         <md-toolbar ng-cloak>
-            <div class="md-toolbar-tools">
+            <div class="md-toolbar-tools" ng-class="{'home': home}">
                 <h2>
                     <span class="md-title"><a href="#/">GUANINE</a></span>
                 </h2>
@@ -44,7 +48,7 @@
                     </md-menu-content>
                 </md-menu>
                 <md-button aria-label="Login" ng-if="!nav.userData.username" ng-hide="nav.show_login_button == false" ng-click="go('/login')" class="md-secondary">
-                    Login
+                    Sign In
                 </md-button>
             </div>
         </md-toolbar>

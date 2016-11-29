@@ -38,18 +38,18 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
         $mdThemingProvider.definePalette('myPalette', {
             '50': 'd7f4ef',
             '100': 'c4eee7',
-            '200': 'b334af',
-            '300': 'b334af',
-            '400': 'b334af',
+            '200': 'b334aa',
+            '300': 'b334ab',
+            '400': 'b334ac',
             '500': '34b3a0',
-            '600': 'b334af',
-            '700': 'b334af',
+            '600': '288a7c',
+            '700': 'b334ae',
             '800': 'b334af',
-            '900': 'b334af',
-            'A100': 'b334af',
-            'A200': 'b334af',
-            'A400': 'b334af',
-            'A700': 'b334af',
+            '900': 'b334a1',
+            'A100': 'b334a2',
+            'A200': 'b334a3',
+            'A400': 'b334a4',
+            'A700': 'b334a5',
             'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
                                                 // on this palette should be dark or light
 
@@ -65,10 +65,10 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 templateUrl: 'partials/course-detail.html',
                 controller: 'CourseDetailCtrl'
             }).
-            //when('/students', {
-                //templateUrl: 'partials/student-list.html',
-                //controller: 'StudentListCtrl'
-            //}).
+            when('/courses/', {
+                templateUrl: 'partials/course-list.html',
+                controller: 'CourseListCtrl'
+            }).
             when('/courses/:courseID/students/:studentID', {
                 templateUrl: 'partials/student-detail.html',
                 controller: 'StudentDetailCtrl'
@@ -81,14 +81,14 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 templateUrl: 'partials/login.html',
                 controller: 'LogOutCtrl'
             }).
+            when('/', {
+                templateUrl: 'partials/home.html',
+                controller: 'HomeCtrl'
+            }).
             //when('/help', {
                 //templateUrl: 'partials/help.html',
                 //controller: 'HelpCtrl'
             //}).
-            when('/', {
-                templateUrl: 'partials/course-list.html',
-                controller: 'CourseListCtrl'
-            }).
             otherwise({
                 redirectTo: '/'
             });
@@ -154,4 +154,4 @@ require('./ctrl/student/detail.js')(guanineApp);
 require('./ctrl/nav.js')(guanineApp);
 require('./ctrl/login.js')(guanineApp);
 require('./ctrl/logout.js')(guanineApp);
-//require('./ctrl/help.js')(guanineApp);
+require('./ctrl/home.js')(guanineApp);
