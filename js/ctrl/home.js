@@ -3,7 +3,7 @@ var jwt_decode = require('jwt-decode');
 export default function(guanineApp) {
     guanineApp.controller('HomeCtrl', ['$scope', '$localStorage', '$location', 'Restangular', '$mdLoginToast', '$http', 'DRF_URL',
         function($scope, $localStorage, $location, Restangular, $mdLoginToast, $http, DRF_URL) {
-            if ($scope.nav.userData.username) {
+            if ($scope.nav.userData && $scope.nav.userData.username) {
                 $location.path('/courses/');
             }
 

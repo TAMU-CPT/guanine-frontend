@@ -13,6 +13,7 @@ require('angular-animate');
 require('jquery');
 require('ngstorage');
 require('angular-jwt');
+require('../css/main.scss');
 
 var guanineApp = angular.module('guanineApp', [
     'ngRoute',
