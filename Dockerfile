@@ -1,18 +1,13 @@
-FROM node:4
+FROM quay.io/tamu_cpt/frontend-builder
 
 ADD . /app
 WORKDIR /app
-RUN npm install -g yarn && \
-	make node_modules && \
+
+RUN make node_modules && \
 	npm rebuild node-sass && \
 	make build && \
-	mkdir /output/ && \
 	cp *.html /output/ && \
 	cp -Rv css /output/ && \
 	cp -Rv build/ /output/ && \
 	cp -Rv partials/ /output/ && \
 	rm -rf build
-
-ENV BACKEND_URL http://localhost:8000
-
-CMD ["/app/.entrypoint.sh"]
