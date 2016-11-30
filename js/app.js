@@ -134,8 +134,10 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                'responseError': function (response) {
                    console.log('Failed with', response.status, 'status');
                    if (response.status == 401 || response.status == 403 || response.status == 400 || response.status == 500) {
-                       console.log('bad');
+                       console.log("Bad authentication");
                        //$location.path('/login');
+                   } else if (response.status == -1){
+                       console.log("Backend server unavailable");
                    }
                    return $q.reject(response);
                }
