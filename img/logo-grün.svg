@@ -15,7 +15,10 @@
    id="svg4193"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="logo-grün.svg">
+   sodipodi:docname="logo-grün.svg"
+   inkscape:export-filename="/home/hxr/work/guanine-frontend/img/logo-grün.png"
+   inkscape:export-xdpi="128"
+   inkscape:export-ydpi="128">
   <defs
      id="defs4195" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8468405"
-     inkscape:cx="150.98589"
-     inkscape:cy="47.168545"
+     inkscape:zoom="5.693681"
+     inkscape:cx="69.37362"
+     inkscape:cy="55.322934"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -72,19 +75,19 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#8ee1d2;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 192.98569,640.74511 0,29.55348"
+       d="m 197.90342,645.13594 c 0,9.85116 0,-4.59844 0,23.40631"
        id="path4797-3-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#8ee1d2;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 240.81063,674.91513 -23.2708,12.61405"
+       d="m 236.9467,669.9974 -18.35307,10.50645"
        id="path4797-3-5-9"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#8ee1d2;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 132.08384,634.944 -16.96721,21.9148"
+       d="m 134.19145,639.68609 -13.10328,16.47017"
        id="path4797-3-2-6"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
