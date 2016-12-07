@@ -3,29 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>GUANINE</title>
+    <title ng-bind="'GUANINE &mdash; ' + title">GUANINE</title>
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link href="build/main.css" rel="stylesheet">
 </head>
-<style>
-    * {
-        font-family: 'Quicksand', sans-serif;
-        font-weight: bold;
-    }
-    table.md-table th.md-column {
-        font-size: 105% !important;
-    }
-    table.md-table td.md-cell, .reg {
-        font-weight: 400;
-    }
-    html, body {
-        background:#e9eaea;
-    }
-    .home {
-        background-color:white;
-        color:#34b3a0;
-    }
-</style>
 <body>
     <div ng-controller="NavCtrl" layout="column" style="height:500px" ng-cloak>
         <md-toolbar ng-cloak>

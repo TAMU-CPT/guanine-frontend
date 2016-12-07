@@ -63,33 +63,40 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
 
         $routeProvider.
             when('/courses/:courseID', {
+                title: "Course",
                 templateUrl: 'partials/course-detail.html',
                 controller: 'CourseDetailCtrl'
             }).
             when('/courses/', {
+                title: "Course List",
                 templateUrl: 'partials/course-list.html',
                 controller: 'CourseListCtrl'
             }).
+            when('/courses/:courseID/assessment/:quizID', {
+                title: "Assessment",
+                templateUrl: 'partials/assessment-detail.html',
+                controller: 'QuizDetailCtrl'
+            }).
             when('/courses/:courseID/students/:studentID', {
+                title: "Student Detail",
                 templateUrl: 'partials/student-detail.html',
                 controller: 'StudentDetailCtrl'
             }).
             when('/login', {
+                title: "Login",
                 templateUrl: 'partials/login.html',
                 controller: 'LoginCtrl'
             }).
             when('/logout', {
+                title: "Logout",
                 templateUrl: 'partials/login.html',
                 controller: 'LogOutCtrl'
             }).
             when('/', {
+                title: "Home",
                 templateUrl: 'partials/home.html',
                 controller: 'HomeCtrl'
             }).
-            //when('/help', {
-                //templateUrl: 'partials/help.html',
-                //controller: 'HelpCtrl'
-            //}).
             otherwise({
                 redirectTo: '/'
             });
@@ -158,3 +165,10 @@ require('./ctrl/nav.js')(guanineApp);
 require('./ctrl/login.js')(guanineApp);
 require('./ctrl/logout.js')(guanineApp);
 require('./ctrl/home.js')(guanineApp);
+require('./ctrl/quiz/detail.js')(guanineApp);
+
+guanineApp.run(['$rootScope', function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title;
+    });
+}]);

@@ -19,24 +19,25 @@
 </style>
 
 <div layout="column" layout-align="center center" flex layout-padding>
-    <div layout="row" layout-align="center center">
-        <h1 style="padding:0.3em;margin:0">{{course.name}}</h1>
-        <div ng-repeat="prof in course.professor" style="padding:0.1em">
-            <img gravatar-src="prof.email" gravatar-size="30" style="border-radius:50%">
-        </div>
-    </div>
-    <p style="margin-top:0; text-align:center">{{course.description}}</p>
+    <h1 style="padding:0.3em;margin:0">{{data.title}}</h1>
+    <p style="margin-top:0; text-align:center">{{data.description}}</p>
 </div>
 <div flex layout="row" layout-align="center center" style="background:white" layout-padding>
+    <div flex="20" layout="column" layout-align="center center">
+    </div>
     <div flex="20" layout="column" layout-align="center center" style="border-left: 1px solid rgb(212, 213, 214)">
-        <h3>{{course.students.length}}</h3>
-        <div ng-if="course.students.length != 1"class="reg">Students</div>
-        <div ng-if="course.students.length == 1"class="reg">Student</div>
+        <h3>{{ unique_students }} / {{ total_students }}</h3>
+        <div class="reg">Students Reporting</div>
     </div>
     <div flex="20" layout="column" layout-align="center center" style="border-right: 1px solid rgb(212, 213, 214)">
-        <h3>{{course.assessment_set.length}}</h3>
-        <div ng-if="course.assessment_set.length != 1"class="reg">Assessments</div>
-        <div ng-if="course.assessment_set.length == 1"class="reg">Assessment</div>
+        <h3>{{data.result_set.length}}</h3>
+        <div ng-if="data.result_set.length != 1" class="reg">Results</div>
+        <div ng-if="data.result_set.length == 1" class="reg">Result</div>
+    </div>
+    <div flex="20" layout="column" layout-align="center center">
+        <md-button class="md-fab md-primary" aria-label="API Keys" ng-click="popup_api_key.show()">
+            <ng-md-icon icon="vpn_key"></ng-md-icon>
+        </md-button>
     </div>
 </div>
 <div layout="row" layout-align="center center" flex style="background:#d4d5d6">
@@ -44,47 +45,36 @@
     <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
     <p class="reg" layout-padding>{{end_date}}</p>
 </div>
-
-
-<div layout="row" layout-align="center center">
-    <h2 id="goto">Classroom</h2>
-    <div layout="row">
-        <md-button ng-click="assessmentPopup($event)">
-            <ng-md-icon icon="add_box"></ng-md-icon>
-            Add assessment
-        </md-button>
-    </div>
-</div>
-
 <div class="container-fluid" layout="row" layout-align="center">
     <md-card flex="80">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span>Results</span>
+            </div>
+        </md-toolbar>
         <md-card-content>
             <md-table-container>
                 <table md-table>
-                    <thead md-head md-order="query.order" md-on-reorder="updateData">
+                    <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="name">NAME</th>
-                            <th ng-repeat="assessment in course.assessment_set" md-column>
-                                <a ng-href="#/courses/{{ course.id }}/assessment/{{ assessment.id }}">
-                                    {{assessment.title}}
-                                </a>
-                            <th>
+                            <th md-column md-order-by="name">Name</th>
+                            <th md-column md-order-by="submitted">Submitted</th>
+                            <th md-column md-order-by="points">Points</th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row ng-repeat="student in course.students | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="go(student.id)">
-                            <td md-cell>{{student.name}}</td>
-                            <td ng-repeat="assessment in course.assessment_set" md-cell>{{student_result(assessment.result_set, student.id)}}</td>
+                        <tr md-row ng-repeat="result in data.result_set">
+                            <td md-cell>
+                                <a href="#/courses/{{ data.course.id }}/students/{{ result.student.id }}">
+                                {{result.student.name}}
+                                </a>
+                            </td>
+                            <td md-cell>{{ result.submitted }}</td>
+                            <td md-cell>{{ result.points_earned }} / {{ result.points_possible }}</td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination
-                md-limit="query.limit"
-                md-page="query.page"
-                md-total="{{course.students.length}}"
-                md-page-select="options.pageSelect">
-            </md-table-pagination>
         </md-card-content>
     </md-card>
 </div>
@@ -140,4 +130,35 @@
         </md-card>
     </md-dialog>
   </div>
+</div>
+
+<div style="visibility: hidden">
+    <div class="md-dialog-container" id="popup_api_key">
+        <md-dialog>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <span class="md-headline">API Keys</span>
+                    <span flex></span>
+                    <md-button ng-click="popup_api_key.cancel()" aria-label="close" class="md-icon-button">
+                        <ng-md-icon icon="close"></ng-md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-card style="margin:0">
+                <md-card-content layout="column">
+                    <h3>Configuring Scripts</h3>
+                    <md-table-container>
+                        <table md-table>
+                            <tbody md-body>
+                                <tr md-row>
+                                    <td md-cell>Assessment ID</td>
+                                    <td md-cell><pre>{{ data.id }}</pre></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                </md-card-content>
+            </md-card>
+        </md-dialog>
+    </div>
 </div>

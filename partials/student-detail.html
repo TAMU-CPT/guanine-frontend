@@ -32,7 +32,11 @@
                         <tr md-row ng-repeat="result in results">
                             <td md-cell>{{date_format(result.submitted)}}</td>
                             <td md-cell>{{result.points_earned/result.points_possible * 100}}</td>
-                            <td md-cell>{{result.assessment.title}}</td>
+                            <td md-cell>
+                                <a href="#/courses/{{ result.assessment.course }}/assessment/{{ result.assessment.id }}/">
+                                    {{result.assessment.title}}
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
