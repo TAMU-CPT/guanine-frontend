@@ -14,8 +14,15 @@ require('jquery');
 require('ngstorage');
 require('angular-jwt');
 require('../css/main.scss');
+var Raven = require('raven-js');
+
+Raven
+    .config('https://5300df7cc5aa4af2a2571f94fd50a610@cptgnome.tamu.edu/9')
+    .addPlugin(require('raven-js/plugins/angular'), angular)
+    .install();
 
 var guanineApp = angular.module('guanineApp', [
+    'ngRaven',
     'ngRoute',
     'restangular',
     'ngMdIcons',
@@ -26,6 +33,7 @@ var guanineApp = angular.module('guanineApp', [
     'md.data.table',
     'ngStorage' // https://github.com/gsklee/ngStorage
 ]);
+
 
 guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarServiceProvider', 'RestangularProvider', 'DRF_URL',
     function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL) {
