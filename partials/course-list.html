@@ -81,7 +81,7 @@
                 <div layout="row">
                     <md-input-container flex>
                         <label>Class administrators</label>
-                        <md-select ng-model="professors" multiple ng-change="printusers()">
+                        <md-select ng-model="professors" multiple>
                             <md-option ng-value="user.username" ng-repeat="user in users">{{user.username}}</md-option>
                         </md-select>
                     </md-input-container>
