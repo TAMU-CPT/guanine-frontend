@@ -74,7 +74,7 @@ export default function(guanineApp) {
             $scope.student_result = function(results, student_id) {
                 var r = [];
                 results.forEach(function(result) {
-                    if (result.student == student_id) {
+                    if (result.student.id == student_id) {
                         r.push(result)
                     }
                 });
