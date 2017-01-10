@@ -1,8 +1,8 @@
 var moment = require('moment');
 
 export default function(guanineApp) {
-    guanineApp.controller('CourseDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog',
-        function($scope, Restangular, $location, $routeParams, $mdDialog) {
+    guanineApp.controller('CourseDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog', '$mdLoginToast',
+        function($scope, Restangular, $location, $routeParams, $mdDialog, $mdLoginToast) {
             $scope.assessment = {};
 
             Restangular.one('courses', $routeParams.courseID).get().then(function(data) {
