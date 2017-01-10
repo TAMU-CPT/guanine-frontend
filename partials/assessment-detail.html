@@ -55,7 +55,7 @@
         <md-card-content>
             <md-table-container>
                 <table md-table>
-                    <thead md-head md-order="query.order">
+                    <thead md-head md-order="ordering" md-on-reorder="updateData">
                         <tr md-row>
                             <th md-column md-order-by="name">Name</th>
                             <th md-column md-order-by="submitted">Submitted</th>
@@ -65,7 +65,7 @@
                     <tbody md-body>
                         <tr md-row ng-repeat="result in data.result_set">
                             <td md-cell>
-                                <a href="#/courses/{{ data.course.id }}/students/{{ result.student.id }}">
+                                <a href="#/courses/{{ data.course_info.id }}/students/{{ result.student.id }}">
                                 {{result.student.name}}
                                 </a>
                             </td>
