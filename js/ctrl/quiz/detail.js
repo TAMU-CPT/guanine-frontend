@@ -7,7 +7,14 @@ export default function(guanineApp) {
 
             Restangular.one('assessments', $routeParams.quizID).get().then(function(data) {
                 $scope.data = data;
-                $scope.unique_students = $scope.data.result_set.map(function(x){ return x.student.id; }).length;
+                var distinct = []
+                $scope.data.result_set.map(function(x){
+                    if (x.student.id not in distinct) {
+                        distinct.push(x);
+                    }
+                });
+                $scope.unique_students = distinct.length;
+                console.log($scope.unique_students);
                 $scope.total_students = $scope.data.course.students.length;
 
                 // minDate/maxDate for min and max dates for assessments
