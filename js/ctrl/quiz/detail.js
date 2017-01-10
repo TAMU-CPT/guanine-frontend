@@ -9,7 +9,7 @@ export default function(guanineApp) {
                 $scope.unique_students = $scope.data.result_set.map(function(x){ return x.student.id; }).filter(function (x, i, a) {
                     return a.indexOf(x) == i;
                 }).length;
-                $scope.total_students = $scope.data.course.students.length;
+                $scope.total_students = $scope.data.course_info.students.length;
 
                 // minDate/maxDate for min and max dates for assessments
                 $scope.minDate = moment($scope.data.start_date).toDate();
