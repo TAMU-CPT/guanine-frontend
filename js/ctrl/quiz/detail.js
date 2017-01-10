@@ -3,11 +3,12 @@ var moment = require('moment');
 export default function(guanineApp) {
     guanineApp.controller('QuizDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog',
         function($scope, Restangular, $location, $routeParams, $mdDialog) {
-            console.log($routeParams);
 
             Restangular.one('assessments', $routeParams.quizID).get().then(function(data) {
                 $scope.data = data;
-                $scope.unique_students = $scope.data.result_set.map(function(x){ return x.student.id; }).length;
+                $scope.unique_students = $scope.data.result_set.map(function(x){ return x.student.id; }).filter(function (x, i, a) {
+                    return a.indexOf(x) == i;
+                }).length;
                 $scope.total_students = $scope.data.course.students.length;
 
                 // minDate/maxDate for min and max dates for assessments

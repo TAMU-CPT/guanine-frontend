@@ -1,10 +1,11 @@
 var moment = require('moment');
 
 export default function(guanineApp) {
-    guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location', '$mdLoginToast',
-        function($scope, Restangular, $location, $mdLoginToast) {
+    guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location', '$mdLoginToast', '$localStorage',
+        function($scope, Restangular, $location, $mdLoginToast, $localStorage) {
             $scope.course = {};
             $scope.students = [];
+            $scope.professors = [$localStorage.jwtData.username];
 
             Restangular.all('courses').getList().then(function(data) {
                 $scope.courses = data;
@@ -66,6 +67,7 @@ export default function(guanineApp) {
                     students: $scope.students,
                     start_date: moment($scope.course.start_date).format('YYYY-MM-DD'),
                     end_date: moment($scope.course.end_date).format('YYYY-MM-DD'),
+                    professor: $scope.professors,
                 })
                 .then(function(course) {
                     $scope.add_course = false;
