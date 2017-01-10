@@ -80,59 +80,6 @@
 </div>
 
 <div style="visibility: hidden">
-  <div class="md-dialog-container" id="assessment_card">
-    <md-dialog>
-        <md-card style="margin:0">
-            <md-card-content>
-                <form name="assessmentForm" ng-submit="submit()" novalidate>
-                    <div layout="row">
-                        <md-input-container flex>
-                            <label>Name</label>
-                            <input required name="name" md-no-asterisk ng-model="assessment.title" placeholder="e.g. Quiz 1">
-                            <div ng-messages="assessmentForm.name.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div layout="row">
-                        <md-input-container flex>
-                            <label>Description</label>
-                            <input required name="description" md-no-asterisk ng-model="assessment.description" placeholder="e.g. reading on phage P1">
-                            <div ng-messages="assessmentForm.description.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div layout="row" layout-xs="column">
-                        <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-                        </div>
-                        <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.end_date" md-placeholder="End date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-                        </div>
-                    </div>
-                </form>
-            </md-card-content>
-            <div layout="row">
-                <div layout="column" layout-align="center start" flex>
-                    <md-button ng-click="cancel()">
-                        <ng-md-icon icon="keyboard_arrow_left"></ng-md-icon>
-                        Cancel
-                    </md-button>
-                </div>
-                <div layout="column" layout-align="center end" flex>
-                    <md-button ng-disabled="assessmentForm.$invalid" ng-click="submit()">
-                        Submit
-                        <ng-md-icon icon="keyboard_arrow_right"></ng-md-icon>
-                    </md-button>
-                </div>
-            </div>
-        </md-card>
-    </md-dialog>
-  </div>
-</div>
-
-<div style="visibility: hidden">
     <div class="md-dialog-container" id="popup_api_key">
         <md-dialog>
             <md-toolbar>
