@@ -45,9 +45,9 @@
     </div>
 </div>
 <div layout="row" layout-align="center center" flex style="background:#d4d5d6">
-    <p class="reg" layout-padding>{{start_date}}</p>
+    <p class="reg" layout-padding>{{course.start_date | human_time_1 }}</p>
     <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
-    <p class="reg" layout-padding>{{end_date}}</p>
+    <p class="reg" layout-padding>{{course.end_date | human_time_1 }}</p>
 </div>
 
 

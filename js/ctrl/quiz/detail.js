@@ -10,13 +10,7 @@ export default function(guanineApp) {
                     return a.indexOf(x) == i;
                 }).length;
                 $scope.total_students = $scope.data.course_info.students.length;
-
-                // minDate/maxDate for min and max dates for assessments
-                $scope.minDate = moment($scope.data.start_date).toDate();
-                $scope.maxDate = moment($scope.data.end_date).toDate();
                 $scope.date_progress = $scope.find_date_progress();
-                $scope.start_date = moment($scope.data.start_date).format('MM/DD/YYYY');
-                $scope.end_date = moment($scope.data.end_date).format('MM/DD/YYYY');
             });
 
             $scope.options = {
@@ -27,7 +21,7 @@ export default function(guanineApp) {
             $scope.query = {
                 limit: 10,
                 page: 1,
-                order: 'name',
+                order: 'student.name',
             };
 
             $scope.find_date_progress = function() {

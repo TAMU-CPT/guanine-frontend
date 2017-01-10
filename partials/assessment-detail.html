@@ -41,9 +41,9 @@
     </div>
 </div>
 <div layout="row" layout-align="center center" flex style="background:#d4d5d6">
-    <p class="reg" layout-padding>{{start_date}}</p>
+    <p class="reg" layout-padding>{{data.start_date | human_time_1 }}</p>
     <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
-    <p class="reg" layout-padding>{{end_date}}</p>
+    <p class="reg" layout-padding>{{data.end_date | human_time_1 }}</p>
 </div>
 <div class="container-fluid" layout="row" layout-align="center">
     <md-card flex="80">
@@ -55,26 +55,27 @@
         <md-card-content>
             <md-table-container>
                 <table md-table>
-                    <thead md-head md-order="ordering" md-on-reorder="updateData">
+                    <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="name">Name</th>
+                            <th md-column md-order-by="student.name">Name</th>
                             <th md-column md-order-by="submitted">Submitted</th>
-                            <th md-column md-order-by="points">Points</th>
+                            <th md-column>Points</th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row ng-repeat="result in data.result_set">
+                        <tr md-row ng-repeat="result in data.result_set | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit ">
                             <td md-cell>
                                 <a href="#/courses/{{ data.course_info.id }}/students/{{ result.student.id }}">
                                 {{result.student.name}}
                                 </a>
                             </td>
-                            <td md-cell>{{ result.submitted }}</td>
+                            <td md-cell>{{ result.submitted | human_time_2 }}</td>
                             <td md-cell>{{ result.points_earned }} / {{ result.points_possible }}</td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{data.result_set.length}}" md-page-select="options.pageSelect"></md-table-pagination>
         </md-card-content>
     </md-card>
 </div>
