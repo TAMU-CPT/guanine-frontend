@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div layout="column" flex="50">
-                        <md-datepicker required name="end_date" ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
+                        <md-datepicker required name="end_date" md-min-date="minDate" ng-model="course.end_date" ng-disabled="!course.start_date" md-placeholder="End date"></md-datepicker>
                         <div class="validation-messages" ng-hide="courseForm.end_date.$untouched" ng-messages="courseForm.end_date.$error">
                             <div ng-message="required">This is required.</div>
                         </div>

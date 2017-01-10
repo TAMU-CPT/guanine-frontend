@@ -3,7 +3,19 @@ var moment = require('moment');
 export default function(guanineApp) {
     guanineApp.controller('CourseListCtrl', ['$scope', 'Restangular', '$location', '$mdLoginToast', '$localStorage',
         function($scope, Restangular, $location, $mdLoginToast, $localStorage) {
+
             $scope.course = {};
+            $scope.minDate="";
+
+            // prevent choosing an end date that is earlier than the start date
+            $scope.$watch('course.start_date', function(newValue, oldValue) {
+                if (newValue) {
+                    $scope.minDate = moment(newValue).toDate();
+                    if ($scope.course.end_date && (newValue > $scope.course.end_date)) {
+                        $scope.course.end_date = null;
+                    }
+                }
+            });
             $scope.students = [];
             $scope.professors = [$localStorage.jwtData.username];
 
