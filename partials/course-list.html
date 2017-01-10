@@ -32,6 +32,11 @@
     .courselist.ng-hide {
         opacity:0;
     }
+    .validation-messages {
+        font-size: 12px;
+        color: #dd2c00;
+        margin: 10px 0 0 25px; 
+    }
 </style>
 <div layout="row" layout-align="center center">
     <h2>My courses</h2>
@@ -64,20 +69,27 @@
                 <div layout="row">
                     <md-input-container flex>
                         <label>student table</label>
-                        <textarea required md-no-asterisk max-rows=1 ng-change="make_table()" ng-model="course.table" placeholder="paste name and email columns from spreadsheet"></textarea>
-                        <div ng-messages="courseForm.name.$error">
+                        <textarea name="students" required md-no-asterisk max-rows=1 ng-change="make_table()" ng-model="course.table" placeholder="paste name and email columns from spreadsheet"></textarea>
+                        <div ng-messages="courseForm.students.$error">
                             <div ng-message="required">This is required.</div>
                         </div>
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
                     <div layout="column" flex="50">
-                        <md-datepicker ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
+                        <md-datepicker required name="start_date" ng-model="course.start_date" md-placeholder="Start date"></md-datepicker>
+                        <div class="validation-messages" ng-hide="courseForm.start_date.$untouched" ng-messages="courseForm.start_date.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </div>
                     <div layout="column" flex="50">
-                        <md-datepicker ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
+                        <md-datepicker required name="end_date" ng-model="course.end_date" md-placeholder="End date"></md-datepicker>
+                        <div class="validation-messages" ng-hide="courseForm.end_date.$untouched" ng-messages="courseForm.end_date.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </div>
                 </div>
+                <br>
                 <div layout="row">
                     <md-input-container flex>
                         <label>Class administrators</label>

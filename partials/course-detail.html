@@ -16,6 +16,11 @@
       border-right-style: solid;
       height: 100%;
     }
+    .validation-messages {
+        font-size: 12px;
+        color: #dd2c00;
+        margin: 10px 0 0 25px; 
+    }
 </style>
 
 <div layout="column" layout-align="center center" flex layout-padding>
@@ -115,10 +120,16 @@
                     </div>
                     <div layout="row" layout-xs="column">
                         <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <md-datepicker required name="start_date" ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <div class="validation-messages" ng-hide="assessmentForm.start_date.$untouched" ng-messages="assessmentForm.start_date.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </div>
                         <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.end_date" md-placeholder="End date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <md-datepicker required name="end_date" ng-model="assessment.end_date" md-placeholder="End date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <div class="validation-messages" ng-hide="assessmentForm.end_date.$untouched" ng-messages="assessmentForm.end_date.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </div>
                     </div>
                 </form>
