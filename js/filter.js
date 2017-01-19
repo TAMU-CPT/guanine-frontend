@@ -12,4 +12,11 @@ export default function(guanineApp) {
             return moment(input).format('lll');
 		}
 	});
+
+	guanineApp.filter('checkbox_filter', function(){
+		return function(input) {
+            if(input==true) {return 'allowed';}
+            else {return 'not allowed';}
+		}
+	});
 }

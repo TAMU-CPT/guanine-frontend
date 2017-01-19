@@ -6,6 +6,8 @@ export default function(guanineApp) {
 
             $scope.assessment = {};
             $scope.end_minDate="";
+            $scope.multiple_submissions="Allowed";
+            var checked_filter = {"Allowed": true, "Not allowed": false};
 
             // prevent choosing an end date that is earlier than the start date
             $scope.$watch('assessment.start_date', function(newValue, oldValue) {
@@ -69,6 +71,7 @@ export default function(guanineApp) {
                     description: $scope.assessment.description,
                     start_date: moment($scope.assessment.start_date).format('YYYY-MM-DD'),
                     end_date: moment($scope.assessment.end_date).format('YYYY-MM-DD'),
+                    submit_multiple: checked_filter[$scope.multiple_submissions],
                 })
                 .then(function(course) {
                     $scope.assessment = {};

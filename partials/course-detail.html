@@ -118,6 +118,15 @@
                             </div>
                         </md-input-container>
                     </div>
+                    <div layout="row">
+                        <md-checkbox
+                            ng-model="multiple_submissions"
+                            aria-label="Multiple Submissions Checkbox"
+                            ng-true-value="'Allowed'"
+                            ng-false-value="'Not allowed'">
+                            Multiple submissions:  {{multiple_submissions}}
+                        </md-checkbox>
+                    </div>
                     <div layout="row" layout-xs="column">
                         <div layout="column" flex="50">
                             <md-datepicker required name="start_date" ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="start_minDate" md-max-date="maxDate"></md-datepicker>
