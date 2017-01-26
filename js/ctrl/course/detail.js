@@ -3,16 +3,29 @@ var moment = require('moment');
 export default function(guanineApp) {
     guanineApp.controller('CourseDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog', '$mdLoginToast',
         function($scope, Restangular, $location, $routeParams, $mdDialog, $mdLoginToast) {
+
             $scope.assessment = {};
+            $scope.end_minDate="";
+            $scope.multiple_submissions="Allowed";
+            var checked_filter = {"Allowed": true, "Not allowed": false};
+
+            // prevent choosing an end date that is earlier than the start date
+            $scope.$watch('assessment.start_date', function(newValue, oldValue) {
+                if (newValue) {
+                    $scope.end_minDate = moment(newValue).toDate();
+                    if ($scope.assessment.end_date && (newValue > $scope.assessment.end_date)) {
+                        $scope.assessment.end_date = null;
+                    }
+                }
+            });
 
             Restangular.one('courses', $routeParams.courseID).get().then(function(data) {
                 $scope.course = data;
                 // minDate/maxDate for min and max dates for assessments
-                $scope.minDate = moment($scope.course.start_date).toDate();
+                $scope.start_minDate = moment($scope.course.start_date).toDate();
+                $scope.end_minDate = moment($scope.course.start_date).toDate();
                 $scope.maxDate = moment($scope.course.end_date).toDate();
                 $scope.date_progress = $scope.find_date_progress();
-                $scope.start_date = moment($scope.course.start_date).format('MM/DD/YYYY');
-                $scope.end_date = moment($scope.course.end_date).format('MM/DD/YYYY');
             });
 
             $scope.options = {
@@ -58,6 +71,7 @@ export default function(guanineApp) {
                     description: $scope.assessment.description,
                     start_date: moment($scope.assessment.start_date).format('YYYY-MM-DD'),
                     end_date: moment($scope.assessment.end_date).format('YYYY-MM-DD'),
+                    submit_multiple: checked_filter[$scope.multiple_submissions],
                 })
                 .then(function(course) {
                     $scope.assessment = {};

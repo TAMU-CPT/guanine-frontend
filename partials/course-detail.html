@@ -16,6 +16,11 @@
       border-right-style: solid;
       height: 100%;
     }
+    .validation-messages {
+        font-size: 12px;
+        color: #dd2c00;
+        margin: 10px 0 0 25px; 
+    }
 </style>
 
 <div layout="column" layout-align="center center" flex layout-padding>
@@ -40,9 +45,9 @@
     </div>
 </div>
 <div layout="row" layout-align="center center" flex style="background:#d4d5d6">
-    <p class="reg" layout-padding>{{start_date}}</p>
+    <p class="reg" layout-padding>{{course.start_date | human_time_1 }}</p>
     <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
-    <p class="reg" layout-padding>{{end_date}}</p>
+    <p class="reg" layout-padding>{{course.end_date | human_time_1 }}</p>
 </div>
 
 
@@ -113,12 +118,27 @@
                             </div>
                         </md-input-container>
                     </div>
+                    <div layout="row">
+                        <md-checkbox
+                            ng-model="multiple_submissions"
+                            aria-label="Multiple Submissions Checkbox"
+                            ng-true-value="'Allowed'"
+                            ng-false-value="'Not allowed'">
+                            Multiple submissions:  {{multiple_submissions}}
+                        </md-checkbox>
+                    </div>
                     <div layout="row" layout-xs="column">
                         <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <md-datepicker required name="start_date" ng-model="assessment.start_date" md-placeholder="Start date" md-min-date="start_minDate" md-max-date="maxDate"></md-datepicker>
+                            <div class="validation-messages" ng-hide="assessmentForm.start_date.$untouched" ng-messages="assessmentForm.start_date.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </div>
                         <div layout="column" flex="50">
-                            <md-datepicker ng-model="assessment.end_date" md-placeholder="End date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <md-datepicker required name="end_date" md-min-date="end_minDate" ng-model="assessment.end_date" ng-disabled="!assessment.start_date" md-placeholder="End date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                            <div class="validation-messages" ng-hide="assessmentForm.end_date.$untouched" ng-messages="assessmentForm.end_date.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </div>
                     </div>
                 </form>
