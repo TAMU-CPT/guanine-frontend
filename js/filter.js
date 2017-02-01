@@ -19,4 +19,20 @@ export default function(guanineApp) {
             else {return 'not allowed';}
 		}
 	});
+
+	guanineApp.filter('notes_filter', function(){
+		return function(input) {
+            var tmp = JSON.parse(input);
+            var answers = {"0": "A", "1": "B", "2": "C", "3": "D", "4": "E"};
+            var notes = [];
+            for (var i in tmp) {
+                if (tmp[i]["q"]) {
+                    notes.push("Q" + tmp[i]["q"] + " (Chose " + answers[tmp[i]["a"]] + ")");
+                }
+            }
+            if (notes.length) {
+                return notes.sort().join(', ');
+            } else { return "None"; }
+		}
+	});
 }
