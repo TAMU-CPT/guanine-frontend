@@ -39,7 +39,9 @@
                                 </a>
                             </td>
                             <td md-cell>
-                                {{ result.notes | notes_filter }}
+                                <ul>
+                                    <li ng-repeat="n in result.notes">{{n}}</li>
+                                </ul>
                             </td>
                         </tr>
                     </tbody>

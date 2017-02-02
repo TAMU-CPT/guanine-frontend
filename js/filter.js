@@ -31,8 +31,10 @@ export default function(guanineApp) {
                 }
             }
             if (notes.length) {
-                return notes.sort().join(', ');
-            } else { return "None"; }
+                //return notes.sort().join(', ');
+            //} else { return "None"; }
+                return notes.sort();
+            } else { return ["None"]; }
 		}
 	});
 }

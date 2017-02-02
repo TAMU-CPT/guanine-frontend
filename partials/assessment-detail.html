@@ -75,7 +75,9 @@
                             <td md-cell>{{ result.submitted | human_time_2 }}</td>
                             <td md-cell>{{ result.points_earned }} / {{ result.points_possible }}</td>
                             <td md-cell>
-                                {{ result.notes | notes_filter }}
+                                <ul>
+                                    <li ng-repeat="n in result.notes">{{n}}</li>
+                                </ul>
                             </td>
                         </tr>
                     </tbody>
