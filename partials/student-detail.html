@@ -26,6 +26,7 @@
                             <th md-column md-order-by="submitted"><span>Date</span></th>
                             <th md-column><span>Score</span></th>
                             <th md-column md-order-by="assessment__title"><span>Assessment</span></th>
+                            <th md-column><span>Answers missed</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
@@ -36,6 +37,9 @@
                                 <a href="#/courses/{{ result.assessment.course }}/assessment/{{ result.assessment.id }}/">
                                     {{result.assessment.title}}
                                 </a>
+                            </td>
+                            <td md-cell>
+                                {{ result.notes | notes_filter }}
                             </td>
                         </tr>
                     </tbody>

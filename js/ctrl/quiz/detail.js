@@ -25,10 +25,12 @@ export default function(guanineApp) {
             };
 
             $scope.find_date_progress = function() {
-                var begin = moment($scope.data.start_date).format('x');
-                var end = moment($scope.data.end_date).format('x');
-                var now = moment().format('x');
-                return (now - begin) / (end - begin) * 100;
+                if ($scope.data.start_date && $scope.data.end_date) {
+                    var begin = moment($scope.data.start_date).format('x');
+                    var end = moment($scope.data.end_date).format('x');
+                    var now = moment().format('x');
+                    return (now - begin) / (end - begin) * 100;
+                }
             };
 
             $scope.popup_api_key = {
@@ -44,7 +46,6 @@ export default function(guanineApp) {
                     $mdDialog.cancel();
                 }
             }
-
 
     }]);
 }

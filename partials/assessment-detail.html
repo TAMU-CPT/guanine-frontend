@@ -40,7 +40,7 @@
         </md-button>
     </div>
 </div>
-<div layout="row" layout-align="center center" flex style="background:#d4d5d6">
+<div layout="row" ng-if="date_progress" layout-align="center center" flex style="background:#d4d5d6">
     <p class="reg" layout-padding>{{data.start_date | human_time_1 }}</p>
     <md-progress-linear md-mode="determinate" value={{date_progress}}></md-progress-linear>
     <p class="reg" layout-padding>{{data.end_date | human_time_1 }}</p>
