@@ -15,7 +15,7 @@ export default function(guanineApp) {
                 }
                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all('results').getList($scope.query).then(function(data) {
-                    $scope.results = data.plain();
+                    $scope.results = data;
                     $scope.results.map(function(r) { r.notes = $filter('notes_filter')(r.notes); })
                 });
             };
