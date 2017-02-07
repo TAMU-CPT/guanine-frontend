@@ -51,6 +51,10 @@
             <div class="md-toolbar-tools">
                 <div>Results</div>
                 <span flex></span>
+				<a href="#/courses/{{ data.course_info.id }}/assessment/{{ data.id }}/regrade">
+					Re-grade
+				</a>
+				&nbsp;
                 <div class="md-title">Multiple submissions {{data.submit_multiple | checkbox_filter}}</div>
             </div>
         </md-toolbar>

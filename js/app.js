@@ -80,6 +80,11 @@ guanineApp.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gra
                 templateUrl: 'partials/course-list.html',
                 controller: 'CourseListCtrl'
             }).
+            when('/courses/:courseID/assessment/:quizID/regrade', {
+                title: "Regrade Assessment",
+                templateUrl: 'partials/regrade.html',
+                controller: 'QuizRegradeCtrl'
+            }).
             when('/courses/:courseID/assessment/:quizID', {
                 title: "Assessment",
                 templateUrl: 'partials/assessment-detail.html',
@@ -174,6 +179,7 @@ require('./ctrl/login.js')(guanineApp);
 require('./ctrl/logout.js')(guanineApp);
 require('./ctrl/home.js')(guanineApp);
 require('./ctrl/quiz/detail.js')(guanineApp);
+require('./ctrl/quiz/regrade.js')(guanineApp);
 
 guanineApp.run(['$rootScope', function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {

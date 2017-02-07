@@ -1,0 +1,71 @@
+<div class="container-fluid" layout="row" layout-align="center">
+    <md-card flex="80">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <div>Regrade {{ data.title }}</div>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <md-table-container>
+                <table md-table>
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column>Question</th>
+                            <th md-column>New Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="ans in new_answers">
+                            <td md-cell>
+                                {{ ans.question_number }}
+                            </td>
+                            <td md-cell>
+                                <select ng-model="ans.replace">
+                                    <option value="0">A</option></option>
+                                    <option value="1">B</option></option>
+                                    <option value="2">C</option></option>
+                                    <option value="3">D</option></option>
+                                    <option value="4">E</option></option>
+                                    <option value="5">F</option></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-button class="md-primary md-raised" ng-click="regrade()">Save + Re-grade</md-button>
+            TODO: Allow users to add more questions to end of table.
+        </md-card-content>
+    </md-card>
+</div>
+
+<div style="visibility: hidden">
+    <div class="md-dialog-container" id="popup_api_key">
+        <md-dialog>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <span class="md-headline">API Keys</span>
+                    <span flex></span>
+                    <md-button ng-click="popup_api_key.cancel()" aria-label="close" class="md-icon-button">
+                        <ng-md-icon icon="close"></ng-md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-card style="margin:0">
+                <md-card-content layout="column">
+                    <h3>Configuring Scripts</h3>
+                    <md-table-container>
+                        <table md-table>
+                            <tbody md-body>
+                                <tr md-row>
+                                    <td md-cell>Assessment ID</td>
+                                    <td md-cell><pre>{{ data.id }}</pre></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                </md-card-content>
+            </md-card>
+        </md-dialog>
+    </div>
+</div>
