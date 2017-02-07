@@ -23,7 +23,7 @@ export default function(guanineApp) {
 	guanineApp.filter('notes_filter', function(){
 		return function(input) {
             var tmp = JSON.parse(input)['graded'];
-            var answers = {"0": "A", "1": "B", "2": "C", "3": "D", "4": "E"};
+            var answers = {"0": "A", "1": "B", "2": "C", "3": "D", "4": "E", "5": "F"};
             var notes = [];
             for (var i in tmp) {
                 if (tmp[i]["q"]) {
