@@ -24,7 +24,7 @@ export default function(guanineApp) {
                         });
                 }
                 if ($scope.loginForm.$invalid) {
-                     console.log("invalid");
+                    console.log("invalid");
                 }
             };
     }]);
