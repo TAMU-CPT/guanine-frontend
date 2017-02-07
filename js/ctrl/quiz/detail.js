@@ -1,11 +1,12 @@
 var moment = require('moment');
 
 export default function(guanineApp) {
-    guanineApp.controller('QuizDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog',
-        function($scope, Restangular, $location, $routeParams, $mdDialog) {
+    guanineApp.controller('QuizDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$mdDialog', '$filter',
+        function($scope, Restangular, $location, $routeParams, $mdDialog, $filter) {
 
             Restangular.one('assessments', $routeParams.quizID).get().then(function(data) {
                 $scope.data = data;
+                $scope.data.result_set.map(function(r) { r.notes = $filter('notes_filter')(r.notes); })
                 $scope.unique_students = $scope.data.result_set.map(function(x){ return x.student.id; }).filter(function (x, i, a) {
                     return a.indexOf(x) == i;
                 }).length;

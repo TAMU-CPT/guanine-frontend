@@ -1,8 +1,8 @@
 var moment = require('moment');
 
 export default function(guanineApp) {
-    guanineApp.controller('StudentDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams',
-        function($scope, Restangular, $location, $routeParams) {
+    guanineApp.controller('StudentDetailCtrl', ['$scope', 'Restangular', '$location', '$routeParams', '$filter',
+        function($scope, Restangular, $location, $routeParams, $filter) {
             Restangular.one('students', $routeParams.studentID).get().then(function(data) {
                 $scope.student = data;
             });
@@ -16,6 +16,7 @@ export default function(guanineApp) {
                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all('results').getList($scope.query).then(function(data) {
                     $scope.results = data;
+                    $scope.results.map(function(r) { r.notes = $filter('notes_filter')(r.notes); })
                 });
             };
 
